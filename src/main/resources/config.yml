@@ -1,0 +1,5 @@
+# Maximum wager accepted by /cf create
+max-wager: 1000000000.0
+
+# Number of roulette steps. Each step lasts 2 server ticks.
+roulette-ticks: 40
