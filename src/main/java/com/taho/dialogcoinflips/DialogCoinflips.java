@@ -181,7 +181,7 @@ public final class DialogCoinflips extends JavaPlugin implements Listener {
         buttons.add(ActionButton.builder(Component.text("Close", NamedTextColor.RED)).build());
         Dialog dialog = Dialog.create(builder -> builder.empty()
             .base(DialogBase.builder(Component.text("Coinflips", NamedTextColor.GOLD)).body(body).build())
-            .type(DialogType.multiAction(buttons).columns(1).exitAction(ActionButton.builder(Component.text("Close")).build())));
+            .type(DialogType.multiAction(buttons).columns(1).exitAction(ActionButton.builder(Component.text("Close")).build()).build()));
         player.showDialog(dialog);
     }
 
