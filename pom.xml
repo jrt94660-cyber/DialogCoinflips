@@ -6,18 +6,18 @@
   <packaging>jar</packaging>
   <name>DialogCoinflips</name>
   <properties>
-    <maven.compiler.release>21</maven.compiler.release>
+    <maven.compiler.release>25</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
     <repository><id>papermc</id><url>https://repo.papermc.io/repository/maven-public/</url></repository>
   </repositories>
   <dependencies>
-    <dependency><groupId>io.papermc.paper</groupId><artifactId>paper-api</artifactId><version>26.1.2.build.XX-stable</version><scope>provided</scope></dependency>
+    <dependency><groupId>io.papermc.paper</groupId><artifactId>paper-api</artifactId><version>26.2.build.134-stable</version><scope>provided</scope></dependency>
     <dependency><groupId>com.github.MilkBowl</groupId><artifactId>VaultAPI</artifactId><version>1.7</version><scope>provided</scope></dependency>
   </dependencies>
   <build><plugins>
-    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.14.0</version><configuration><release>21</release></configuration></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.14.0</version><configuration><release>25</release></configuration></plugin>
     <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>3.6.0</version><executions><execution><phase>package</phase><goals><goal>shade</goal></goals></execution></executions></plugin>
   </plugins></build>
 </project>
