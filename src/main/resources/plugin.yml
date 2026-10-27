@@ -1,14 +1,15 @@
 name: DialogCoinflips
-version: 1.0.0
+version: 1.1.0
 main: com.taho.dialogcoinflips.DialogCoinflips
 api-version: '26.1'
 depend: [Vault]
 softdepend: [floodgate, Geyser-Spigot]
 commands:
   cf:
-    description: Open coinflips or create a wager
+    description: Browse, create, or cancel coinflips
     usage: /cf [create <amount>|cancel]
     aliases: [coinflip, coinflips]
+    permission: dialogcoinflips.use
 permissions:
   dialogcoinflips.use:
     description: Use the coinflip system
