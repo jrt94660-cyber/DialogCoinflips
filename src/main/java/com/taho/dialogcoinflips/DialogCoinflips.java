@@ -167,7 +167,11 @@ public final class DialogCoinflips extends JavaPlugin implements Listener {
         List<DialogBody> body = new ArrayList<>();
         body.add(DialogBody.plainMessage(Component.text("Choose a player's coinflip. Each player wagers the listed amount.", NamedTextColor.GRAY)));
         if (available.isEmpty()) body.add(DialogBody.plainMessage(Component.text("No coinflips are available right now.", NamedTextColor.YELLOW)));
-        else for (Coinflip flip : available) body.add(DialogBody.plainMessage(Component.text("Head: " + Bukkit.getOfflinePlayer(flip.creator).getName() + "  •  Wager: $" + money(flip.amount), NamedTextColor.GOLD)));
+        else for (Coinflip flip : available) {
+            String ownerName = Optional.ofNullable(Bukkit.getOfflinePlayer(flip.creator).getName()).orElse("Player");
+            body.add(DialogBody.item(head(flip.creator, ownerName, "Wager: $" + money(flip.amount))));
+            body.add(DialogBody.plainMessage(Component.text(ownerName + "  •  Wager: $" + money(flip.amount), NamedTextColor.GOLD)));
+        }
         List<ActionButton> buttons = new ArrayList<>();
         for (Coinflip flip : available) {
             String name = Optional.ofNullable(Bukkit.getOfflinePlayer(flip.creator).getName()).orElse("Player");
@@ -222,7 +226,7 @@ public final class DialogCoinflips extends JavaPlugin implements Listener {
         Bukkit.getScheduler().runTaskTimer(this, task -> {
             int elapsed = rouletteProgress.getOrDefault(flip.id, 0);
             UUID shown = candidates.get(ThreadLocalRandom.current().nextInt(candidates.size()));
-            for (Player viewer : List.of(challenger, Bukkit.getPlayer(flip.creator))) {
+            for (Player viewer : new Player[]{challenger, Bukkit.getPlayer(flip.creator)}) {
                 if (viewer != null && viewer.isOnline()) {
                     viewer.sendTitle(Optional.ofNullable(Bukkit.getOfflinePlayer(shown).getName()).orElse("Player"),
                         "§7Coinflip roulette...", 0, 8, 0);
@@ -238,7 +242,7 @@ public final class DialogCoinflips extends JavaPlugin implements Listener {
                 double pot = flip.amount * 2.0;
                 if (winner != null) economy.depositPlayer(winner, pot);
                 String winnerName = Optional.ofNullable(Bukkit.getOfflinePlayer(winnerId).getName()).orElse("Player");
-                for (Player viewer : List.of(challenger, Bukkit.getPlayer(flip.creator))) if (viewer != null && viewer.isOnline()) {
+                for (Player viewer : new Player[]{challenger, Bukkit.getPlayer(flip.creator)}) if (viewer != null && viewer.isOnline()) {
                     viewer.sendTitle("§6§l" + winnerName, "§aWon $" + money(pot), 5, 60, 10);
                     viewer.sendMessage(Component.text("Coinflip winner: " + winnerName + " — payout $" + money(pot), NamedTextColor.GOLD));
                 }
