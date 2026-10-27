@@ -238,7 +238,7 @@ public final class DialogCoinflips extends JavaPlugin implements Listener {
             body.add(DialogBody.plainMessage(Component.text("No coinflips are available right now.", NamedTextColor.YELLOW)));
         } else {
             for (Coinflip flip : available) {
-                body.add(DialogBody.item(itemBuilder -> itemBuilder.item(head(flip.creator(), playerName(flip.creator()), "Wager: $" + money(flip.amount()))).build()));
+                body.add(DialogBody.item(head(flip.creator(), playerName(flip.creator()), "Wager: $" + money(flip.amount()))).build());
                 body.add(DialogBody.plainMessage(Component.text(playerName(flip.creator()) + " — Wager: $" + money(flip.amount()), NamedTextColor.GOLD)));
             }
         }
